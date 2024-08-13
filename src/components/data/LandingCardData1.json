@@ -1,31 +1,31 @@
 [
     {
-        "image": "src/assets/CardImage1.png",
+        "image": "assets/CardImage1.png",
         "title": "Graphic Designer",
         "location": "Abuja, Nigeria"
     },
     {
-        "image": "src/assets/CardImage2.png",
+        "image": "assets/CardImage2.png",
         "title": "Software Developer",
         "location": "Lagos, Nigeria"
     },
     {
-        "image": "src/assets/CardImage3.png",
+        "image": "assets/CardImage3.png",
         "title": "Motion Developer",
         "location": "Remote"
     },
     {
-        "image": "src/assets/CardImage4.png",
+        "image": "assets/CardImage4.png",
         "title": "Customer Support",
         "location": "Port Harcourt, Nigeria"
     },
     {
-        "image": "src/assets/CardImage5.png",
+        "image": "assets/CardImage5.png",
         "title": "Social Media Manager",
         "location": "Remote"
     },
     {
-        "image": "src/assets/CardImage6.png",
+        "image": "assets/CardImage6.png",
         "title": "Business Analyst",
         "location": "Jos, Nigeria"
     }
