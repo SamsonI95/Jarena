@@ -90,6 +90,14 @@ const Footer = () => {
               <img src={LinkedInIcon} alt="linkedin-logo" />
             </Link>
           </div>
+          <div className="flex items-center mt-6 space-x-[32px]">
+            <Link to="/terms-of-service">
+              <p>Terms & Conditions</p>
+            </Link>
+            <Link to="/privacy-policy">
+              <p>Privacy Policy</p>
+            </Link>
+          </div>
         </section>
       </div>
     </>

@@ -5,6 +5,8 @@ import "./App.css"
 
 //Page(s)
 import HomePage from "./components/pages/HomePage";
+import ToS from "./components/pages/ToS";
+import PP from "./components/pages/PP";
 
 //Page Component(s)
 import Header from "./components/page components/Header";
@@ -17,6 +19,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/terms-of-service" element={<ToS />} />
+          <Route path="/privacy-policy" element={<PP />} />
         </Routes>
         <Footer />
       </Router>
