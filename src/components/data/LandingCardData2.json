@@ -1,20 +1,20 @@
 [
   {
-    "image": "src/assets/Card2Image1.png",
+    "image": "assets/Card2Image1.png",
     "date": "June 10, 2024",
     "name": "Emeka Mba",
     "title": "Mastering the Art of Networking: Building Connections for Career Success",
     "details": "Networking — it’s a word that often evokes mixed emotions. Some people thrive on it, while others find it daunting. Regardless of where you fall on the spectrum, there’s no denying that networking is an essential skill that can turbocharge your career. "
   },
   {
-    "image": "src/assets/Card2Image2.png",
+    "image": "assets/Card2Image2.png",
     "date": "June 17, 2024",
     "name": "Esther Eze",
     "title": "Finding Your Fit: How to Identify and Pursue Your Ideal Career Path",
     "details": "Understanding oneself is the cornerstone of discovering a fulfilling career. Begin by reflecting on your passions, interests, and values. What activities make you lose track of time? What subjects or causes ignite a spark within you?"
   },
   {
-    "image": "src/assets/Card2Image3.png",
+    "image": "assets/Card2Image3.png",
     "date": "June 19, 2024",
     "name": "Temi Bam",
     "title": "Developing a Personal Brand: Standing Out in a Competitive Job Market",
