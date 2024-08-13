@@ -38,7 +38,7 @@ const LandingPageCardTwo = () => {
           <section>
             <div className="w-[400px]">
               <div className="w-fit">
-                <img src="src/assets/Card2Image1.png" alt="Emeka Mba" />
+                <img src="public/assets/Card2Image1.png" alt="Emeka Mba" />
                 <div className="flex justify-between text-[12px] mb-3">
                   <h3>June 10, 2024</h3>
                   <h3>Emeka Mba</h3>

@@ -11,7 +11,7 @@ import { IoIosSearch } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
 
 //Image(s)
-import LandingImageL from "../../assets/LandingImageL.png";
+import LandingImageL from "../../../public/assets/LandingImageL.png";
 
 const HomePage = () => {
   //custom file input logif
