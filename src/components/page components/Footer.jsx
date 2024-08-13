@@ -6,8 +6,8 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 
 //Image(s)
-import Xicon from "../../assets/Xicon.png";
-import LinkedInIcon from "../../assets/LinkedInIcon.png";
+import Xicon from "../../../public/assets/Xicon.png";
+import LinkedInIcon from "../../../public/assets/LinkedInIcon.png";
 
 const Footer = () => {
   return (
