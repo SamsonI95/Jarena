@@ -1,0 +1,7 @@
+/* custom list icon */
+.custom-list-icon {
+  background-image: url("src/assets/TickIcon.svg");
+  background-size: 1.5rem;
+  background-repeat: no-repeat;
+  padding-left: 2rem;
+}
