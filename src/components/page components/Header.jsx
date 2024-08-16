@@ -19,6 +19,17 @@ const Header = () => {
   const transparentPaths = ["/job-search"];
   const isTransparent = transparentPaths.includes(location.pathname);
 
+  const getMenuColor = () => {
+    switch (location.pathname) {
+      case "/":
+        return "text-[#817F7F]";
+      case "/job-search":
+        return "text-[#FFFFFF]";
+      default:
+        return "text-[#817F7F]";
+    }
+  };
+
   const getTextColor = () => {
     switch (location.pathname) {
       case "/":
@@ -54,7 +65,7 @@ const Header = () => {
           <Logo />
         </section>
         <div className="md:hidden flex items-center">
-          <button onClick={toggleMenu} className={`text-2xl text-white ${getTextColor()}`}>
+          <button onClick={toggleMenu} className={`text-2xl ${getMenuColor()} ${getTextColor()}`}>
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
