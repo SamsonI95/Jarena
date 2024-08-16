@@ -1,0 +1,42 @@
+[
+    {
+        "image": "public/assets/JsImage1.png",
+        "position": "Art & Design",
+        "vacancy": "100 Job vacancies"
+    },
+    {
+        "image": "public/assets/JsImage2.png",
+        "position": "UI/UX Design",
+        "vacancy": "97 Job vacancies"
+    },
+    {
+        "image": "public/assets/JsImage3.png",
+        "position": "IT & Software Development",
+        "vacancy": "700 Job vacancies"
+    },
+    {
+        "image": "public/assets/JsImage4.png",
+        "position": "Business Development",
+        "vacancy": "200 Job vacancies"
+    },
+    {
+        "image": "public/assets/JsImage5.png",
+        "position": "Editor",
+        "vacancy": "80 Job vacancies"
+    },
+    {
+        "image": "public/assets/JsImage6.png",
+        "position": "Marketing",
+        "vacancy": "97 Job vacancies"
+    },
+    {
+        "image": "public/assets/JsImage7.png",
+        "position": "Education",
+        "vacancy": "900 Job vacancies"
+    },
+    {
+        "image": "public/assets/JsImage8.png",
+        "position": "Accounting & Finance",
+        "vacancy": "200 Job vacancies"
+    }
+]

@@ -95,11 +95,11 @@ const HomePage = () => {
             View More
           </button>
         </section>
-        <section className="px-9 lg:px-[100px]">
+        <section className="px-9 lg:px-0">
           {/* mobile */}
           <div className="md:hidden">
             <div className="space-y-5">
-              <section className="text-center space-y-5">
+              <section className="mt-8 text-center space-y-5">
                 <h3 className="font-semibold text-2xl">
                   Upload CV to be Reviewed
                 </h3>
@@ -160,8 +160,8 @@ const HomePage = () => {
           </div>
 
           {/* desktop */}
-          <div className="hidden md:flex space-x-5">
-            <section className="space-y-5">
+          <div className="hidden md:flex jus space-x-[25rem]">
+            <section className="w-fit space-y-5">
               <h3 className="font-semibold text-2xl">
                 Upload CV to be Reviewed
               </h3>
@@ -216,7 +216,7 @@ const HomePage = () => {
             </section>
           </div>
         </section>
-        <section className="w-[450px] lg:w-fit">
+        <section className="w-[450px] lg:w-fit pt-10 lg:pt-[60px] pb-5 lg:pb-[60px]">
           <h3 className="font-semibold text-2xl lg:text-3xl text-center mb-5 lg:mb-7">
             Quick Career Tips from our Blog
           </h3>

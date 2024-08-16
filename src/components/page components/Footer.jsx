@@ -2,7 +2,6 @@
 import React from "react";
 
 //Comoponent
-import Logo from "./Logo";
 import { Link } from "react-router-dom";
 
 //Image(s)
@@ -16,7 +15,11 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row items-start lg:justify-between">
           <div className="space-y-5">
             <section>
-              <Logo />
+              <Link to="/">
+                <h3 className={`font-semibold text-3xl`}>
+                  <span className="text-[#5847D6] text-[42px]">J</span>arena
+                </h3>
+              </Link>
             </section>
             <section>
               <h3 className="font-semibold text-lg">
