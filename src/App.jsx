@@ -6,6 +6,7 @@ import "./App.css";
 //Page(s)
 import HomePage from "./components/pages/HomePage";
 import JobSearch from "./components/pages/JobSearch";
+import Blog from "./components/pages/Blog";
 import ToS from "./components/pages/ToS";
 import PP from "./components/pages/PP";
 
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/job-search" element={<JobSearch />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/terms-of-service" element={<ToS />} />
           <Route path="/privacy-policy" element={<PP />} />
         </Routes>

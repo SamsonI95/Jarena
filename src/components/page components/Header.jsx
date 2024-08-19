@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   const location = useLocation();
-  const transparentPaths = ["/job-search"];
+  const transparentPaths = ["/job-search", "/blog"];
   const isTransparent = transparentPaths.includes(location.pathname);
 
   const getMenuColor = () => {
@@ -24,6 +24,8 @@ const Header = () => {
       case "/":
         return "text-[#817F7F]";
       case "/job-search":
+        return "text-[#FFFFFF]";
+      case "/blog":
         return "text-[#FFFFFF]";
       default:
         return "text-[#817F7F]";
@@ -36,6 +38,8 @@ const Header = () => {
         return "lg:text-[#817F7F]";
       case "/job-search":
         return "lg:text-[#FFFFFF]";
+      case "/blog":
+        return "lg:text-[#FFFFFF]";
       default:
         return "lg:text-[#817F7F]";
     }
@@ -46,6 +50,8 @@ const Header = () => {
       case "/":
         return "lg:bg-[#FFFFFF]";
       case "/job-search":
+        return "lg:bg-transparent";
+      case "/blog":
         return "lg:bg-transparent";
       case "/learning-hub":
         return "lg:bg-[#5847D6]";
@@ -65,7 +71,10 @@ const Header = () => {
           <Logo />
         </section>
         <div className="md:hidden flex items-center">
-          <button onClick={toggleMenu} className={`text-2xl ${getMenuColor()} ${getTextColor()}`}>
+          <button
+            onClick={toggleMenu}
+            className={`text-2xl ${getMenuColor()} ${getTextColor()}`}
+          >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>

@@ -6,7 +6,7 @@ const HideHeader = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/job-search" || location.pathname === "/contact") {
+    if (location.pathname === "/job-search" || location.pathname === "/blog") {
       setShowHeader(false);
     } else {
       setShowHeader(true);

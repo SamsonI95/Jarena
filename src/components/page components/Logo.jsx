@@ -4,17 +4,19 @@ import { Link, useLocation } from "react-router-dom";
 
 const Logo = () => {
   const location = useLocation();
-  
+
   const getLogoColor = () => {
     switch (location.pathname) {
       case "/":
         return "text-[#000000]";
       case "/job-search":
         return "text-[#FFFFFF]";
+      case "/blog":
+        return "text-[#FFFFFF]";
       default:
         return "text-[#000000]";
     }
-  }
+  };
 
   return (
     <>
