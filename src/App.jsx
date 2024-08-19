@@ -9,6 +9,8 @@ import JobSearch from "./components/pages/JobSearch";
 import Blog from "./components/pages/Blog";
 import ToS from "./components/pages/ToS";
 import PP from "./components/pages/PP";
+import SignUp from "./components/pages/SignUp";
+import SignIn from "./components/pages/SignIn";
 
 //Page Component(s)
 import Header from "./components/page components/Header";
@@ -28,6 +30,8 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/terms-of-service" element={<ToS />} />
           <Route path="/privacy-policy" element={<PP />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
         </Routes>
         <Footer />
       </Router>

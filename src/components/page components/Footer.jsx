@@ -2,13 +2,20 @@
 import React from "react";
 
 //Comoponent
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 //Image(s)
 import Xicon from "../../../public/assets/Xicon.png";
 import LinkedInIcon from "../../../public/assets/LinkedInIcon.png";
 
 const Footer = () => {
+  const location = useLocation();
+
+  const hideFooterPaths = ["/signup", "/signin"];
+  const hideFooter = hideFooterPaths.includes(location.pathname);
+  if (hideFooter) {
+    return null;
+  }
   return (
     <>
       <div className="flex flex-col space-y-[5rem] bg-[#F1F0FD] lg:w-full py-6 px-8 lg:py-[80px] lg:px-[100px]">

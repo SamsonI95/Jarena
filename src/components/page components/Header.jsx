@@ -79,7 +79,7 @@ const Header = () => {
           </button>
         </div>
         <section
-          className={`md:flex items-center justify-center absolute lg:relative top-[80px] lg:top-0 left-0 w-full lg:w-fit h-fit bg-white border lg:border-0 text-center py-10 lg:py-0 ${
+          className={`md:flex items-center justify-center absolute lg:relative top-[80px] lg:top-0 left-0 w-full lg:w-fit h-fit z-10 bg-white border lg:border-0 text-center py-10 lg:py-0 ${
             isOpen ? "block" : "hidden"
           } ${getBackgroundColor()}`}
         >
@@ -113,17 +113,25 @@ const Header = () => {
                 </Link>
               </li>
               <li className="md:hidden flex flex-col space-y-6">
-                <button>Sign in</button>
-                <button>Sign up</button>
+                <Link to="/signin">
+                  <button>Sign in</button>
+                </Link>
+                <Link to="/signup">
+                  <button>Sign up</button>
+                </Link>
               </li>
             </ul>
           </nav>
         </section>
-        <section className="hidden md:flex space-x-5">
-          <button className="text-[#817F7F]">Sign in</button>
-          <button className="text-white bg-[#5847D6] rounded-lg border border-transparent py-2 px-4">
-            Sign up
-          </button>
+        <section className="hidden md:flex items-center space-x-5">
+          <Link to="/signin">
+            <button className="text-[#817F7F]">Sign in</button>
+          </Link>
+          <Link to="/signup">
+            <button className="text-white bg-[#5847D6] rounded-lg border border-transparent py-2 px-4">
+              Sign up
+            </button>
+          </Link>
         </section>
       </div>
     </>
