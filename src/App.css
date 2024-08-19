@@ -1,3 +1,8 @@
+* {
+  max-width: 1440px;
+  box-sizing: border-box;
+}
+
 /* custom list icon */
 .custom-list-icon {
   background-image: url(/public/assets/TickIcon.svg);
@@ -55,13 +60,33 @@
 }
 
 .su-img {
+  background-image: url(/assets/SignUpImage1.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.si-img {
   background-image: url(/assets/SignInImage1.png);
   background-size: cover;
   background-position: center;
 }
 
+/* @media only screen and (max-width: 1366px) {
+  .su-img {
+    background-image: url(/assets/SignInImage1.png);
+    background-size: cover;
+    background-position: center;
+  }
+} */
+
 @media only screen and (max-width: 768px) {
   .su-img {
+    background-image: url(/assets/SignUpImage.png);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .si-img {
     background-image: url(/assets/SignInImage.png);
     background-size: cover;
     background-position: center;
