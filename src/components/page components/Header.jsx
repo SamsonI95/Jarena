@@ -53,8 +53,8 @@ const Header = () => {
         return "lg:bg-transparent";
       case "/blog":
         return "lg:bg-transparent";
-      case "/learning-hub":
-        return "lg:bg-[#5847D6]";
+      // case "/learning-hub":
+      //   return "lg:bg-[#5847D6]";
       default:
         return "lg:bg-[#FFFFFF]";
     }
@@ -107,11 +107,11 @@ const Header = () => {
                   Blog
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/cv" onClick={() => setIsOpen(false)}>
                   CV
                 </Link>
-              </li>
+              </li> */}
               <li className="md:hidden flex flex-col space-y-6">
                 <Link to="/signin">
                   <button>Sign in</button>

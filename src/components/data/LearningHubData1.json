@@ -1,0 +1,42 @@
+[
+    {
+        "cardImage": "assets/LhubImage1.png",
+        "cardImageSmall": "assets/LhubImage1s.png",
+        "course": "Web Design for Beginners",
+        "classNo": "40 classes",
+        "duration": "4 months",
+        "userImage": "assets/LhubuserImage1.png",
+        "userImageSmall": "assets/LhubuserImage1s.png",
+        "userName": "by Mike Ekong"
+    },
+    {
+        "cardImage": "assets/LhubImage2.png",
+        "cardImageSmall": "assets/LhubImage2s.png",
+        "course": "UX Design Course",
+        "classNo": "30 classes",
+        "duration": "3 months",
+        "userImage": "assets/LhubuserImage2.png",
+        "userImageSmall": "assets/LhubuserImage2s.png",
+        "userName": "by Samuel King "
+    },
+    {
+        "cardImage": "assets/LhubImage3.png",
+        "cardImageSmall": "assets/LhubImage3s.png",
+        "course": "Software Development",
+        "classNo": "40 classes",
+        "duration": "5 months",
+        "userImage": "assets/LhubuserImage3.png",
+        "userImageSmall": "assets/LhubuserImage3s.png",
+        "userName": "by Queen Nze "
+    },
+    {
+        "cardImage": "assets/LhubImage4.png",
+        "cardImageSmall": "assets/LhubImage4s.png",
+        "course": "Data Analysis",
+        "classNo": "20 classes",
+        "duration": "2 months",
+        "userImage": "assets/LhubuserImage4.png",
+        "userImageSmall": "assets/LhubuserImage4s.png",
+        "userName": "by Solomon Sam "
+    }
+]
