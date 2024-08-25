@@ -83,9 +83,9 @@ const LearningHub = () => {
             </button>
           </div>
         </section>
-        <section className="lg:px-[100px]">
+        <section className="px-9 lg:px-[100px] mt-[40.92px] lg:mt-[155.6px]">
           <div className="text-[#424242]">
-            <h3 className="font-semibold text-[16px] lg:text-2xl w-[120px] lg:w-[200px]">Start your Learning today</h3>
+            <h3 className="font-semibold text-[16px] lg:text-2xl w-[120px] lg:w-[200px] mb-[6px] lg:mb-4">Start your Learning today</h3>
             <p className="text-[10px] lg:text-[16px] w-[180px] lg:w-[376px]">
               Start your learning today. Explore all the categories and choose
               what’s best for you.

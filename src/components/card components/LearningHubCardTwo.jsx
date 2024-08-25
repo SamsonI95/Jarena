@@ -37,7 +37,7 @@ const LearningHubCardTwo = () => {
   ];
   return (
     <>
-      <div className="md:hidden space-y-3">
+      <div className="md:hidden space-y-3 flex flex-col items-center justify-center mt-6">
         {LearningHubData2.slice(0, 3).map((item, index) => (
           <div
             key={index}
@@ -55,7 +55,7 @@ const LearningHubCardTwo = () => {
       </div>
 
       <div className="hidden md:block">
-        <div className="text-[#9593AB]">
+        <div className="text-[#9593AB] mt-8 mb-11 flex justify-end space-x-11">
           <button className="text-2xl" onClick={prevSlide}>
             <GoArrowLeft />
           </button>
@@ -64,7 +64,21 @@ const LearningHubCardTwo = () => {
           </button>
         </div>
         <div className="overflow-hidden">
-          <div
+          <div className="flex items-center justify-center space-x-[39px]">
+            {displayedSlides.map((item, index) => (
+              <div
+                key={index}
+                className="text-[#424242] bg-[#F1F0FD] w-[387px] h-[483px] pt-[35px] px-[22px]"
+              >
+                <h3 className="text-[20px] font-semibold text-center">
+                  {item.title}
+                </h3>
+                <p className=" mt-[26px] mb-[38px]">{item.details}</p>
+                <img src={item.desktopImage} alt="courses" />
+              </div>
+            ))}
+          </div>
+          {/* <div
             className={`flex items-center justify-center space-x-[39px] transform transition-transform duration-300 ${
               isSliding ? "translate-x-[-100%]" : "translate-x-0"
             }`}
@@ -81,22 +95,8 @@ const LearningHubCardTwo = () => {
                 <img src={item.desktopImage} alt="courses" />
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
-        {/* <div className="flex items-center justify-center space-x-[39px]">
-          {displayedSlides.map((item, index) => (
-            <div
-              key={index}
-              className="text-[#424242] bg-[#F1F0FD] w-[387px] h-[483px] pt-[35px] px-[22px]"
-            >
-              <h3 className="text-[20px] font-semibold text-center">
-                {item.title}
-              </h3>
-              <p className=" mt-[26px] mb-[38px]">{item.details}</p>
-              <img src={item.desktopImage} alt="courses" />
-            </div>
-          ))}
-        </div> */}
       </div>
     </>
   );

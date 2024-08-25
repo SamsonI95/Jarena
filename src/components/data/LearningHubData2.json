@@ -36,19 +36,19 @@
     "desktopImage": "public/assets/Lhub2Image3.png"
   },
   {
-    "title": "Design Courses",
+    "title": "BDesign Courses",
     "details": "Dive into the design world. Master UI design, UX design, design systems, and more.",
     "mobileImage": "public/assets/Lhub2Image1s.png",
     "desktopImage": "public/assets/Lhub2Image1.png"
   },
   {
-    "title": "Development Courses",
+    "title": "BDevelopment Courses",
     "details": "Immerse yourself in the world of development Learn Coding, Web development, App creation, and more",
     "mobileImage": "public/assets/Lhub2Image2s.png",
     "desktopImage": "public/assets/Lhub2Image2.png"
   },
   {
-    "title": "Marketing Courses",
+    "title": "BMarketing Courses",
     "details": "Explore the dynamic marketing landscape. Master digital marketing, branding, content strategy, and more",
     "mobileImage": "public/assets/Lhub2Image3s.png",
     "desktopImage": "public/assets/Lhub2Image3.png"
