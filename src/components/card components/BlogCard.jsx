@@ -35,7 +35,7 @@ const BlogCard = () => {
 
         <section className="md:hidden flex flex-col gap-8 px-[60px]">
           <section>
-            <div className="w-[400px]">
+            <div className="w-[370px]">
               <div className="w-fit">
                 <img src="assets/BlogCard1Image1.png" alt="Emeka Mba" />
                 <div className="flex justify-between text-[12px] mb-3">
@@ -43,7 +43,7 @@ const BlogCard = () => {
                   <h3>Emeka Mba</h3>
                 </div>
               </div>
-              <div>
+              <div className="w-[370px]">
                 <h3 className="text-sm lg:text-2xl font-semibold w-[370px]">
                   Mastering the Art of Networking: Building Connections for
                   Career Success
@@ -62,7 +62,7 @@ const BlogCard = () => {
             </div>
           </section>
           <section>
-            <div className="w-[400px]">
+            <div className="w-[370px]">
               <div className="w-fit">
                 <img src="assets/BlogCard1Image2.png" alt="Esther Eze" />
                 <div className="flex justify-between text-[12px] mb-3">
@@ -70,7 +70,7 @@ const BlogCard = () => {
                   <h3>Esther Eze</h3>
                 </div>
               </div>
-              <div>
+              <div className="w-[370px]">
                 <h3 className="text-sm lg:text-2xl font-semibold w-[370px]">
                   Finding Your Fit: How to Identify and Pursue Your Ideal Career
                   Path
