@@ -52,6 +52,11 @@ const LearningHubCardTwo = () => {
             <img src={item.mobileImage} alt="courses" />
           </div>
         ))}
+        <div>
+          <button className="text-[13px] text-[#6B6868] border border-[#6B6868] w-[68.43px] h-[22.96px] mt-[22.49px] ml-[29px]">
+            See More
+          </button>
+        </div>
       </div>
 
       <div className="hidden md:block">
@@ -77,6 +82,12 @@ const LearningHubCardTwo = () => {
                 <img src={item.desktopImage} alt="courses" />
               </div>
             ))}
+          </div>
+
+          <div className="flex items-center justify-center my-[35px]">
+            <button className="text-[15px] text-[#6B6868] border border-[#6B6868] w-[146px] h-[49px]">
+              See More
+            </button>
           </div>
           {/* <div
             className={`flex items-center justify-center space-x-[39px] transform transition-transform duration-300 ${

@@ -4,6 +4,8 @@ import React from "react";
 //Component
 import LearningHubCardOne from "../card components/LearningHubCardOne";
 import LearningHubCardTwo from "../card components/LearningHubCardTwo";
+import LearningHubCardThree from "../card components/LearningHubCardThree";
+import LearningHubCardFour from "../card components/LearningHubCardFour";
 
 const LearningHub = () => {
   return (
@@ -92,6 +94,12 @@ const LearningHub = () => {
             </p>
           </div>
           <LearningHubCardTwo />
+        </section>
+        <section className="mt-[50px] lg:mt-[126px] px-9 lg:px-[100px]">
+          <LearningHubCardThree />
+        </section>
+        <section className="px-9 lg:px-[100px] mt-[62px] mb-[59px] lg:mt-[164px] lg:mb-[98px]">
+          <LearningHubCardFour />
         </section>
       </div>
     </>
