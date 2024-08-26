@@ -39,7 +39,7 @@ const LandingPageCardTwo = () => {
             <div className="w-[400px]">
               <div className="w-fit">
                 <img src="assets/Card2Image1.png" alt="Emeka Mba" />
-                <div className="flex justify-between text-[12px] mb-3">
+                <div className="flex justify-between text-[12px] my-3">
                   <h3>June 10, 2024</h3>
                   <h3>Emeka Mba</h3>
                 </div>
@@ -66,7 +66,7 @@ const LandingPageCardTwo = () => {
             <div className="w-[400px]">
               <div className="w-fit">
                 <img src="assets/Card2Image2.png" alt="Esther Eze" />
-                <div className="flex justify-between text-[12px] mb-3">
+                <div className="flex justify-between text-[12px] my-3">
                   <h3>June 17, 2024</h3>
                   <h3>Esther Eze</h3>
                 </div>
@@ -83,7 +83,7 @@ const LandingPageCardTwo = () => {
                   time? What subjects or causes ignite a spark within you?
                 </p>
               </div>
-              <button className="font-bold lg:hover:text-[#5847D6] border-none">
+              <button className="font-bold lg:hover:text-[#5847D6] border-none mt-3">
                 Read more
               </button>
             </div>
