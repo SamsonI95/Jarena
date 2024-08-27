@@ -80,7 +80,7 @@ const LearningHub = () => {
           </div>
           <LearningHubCardOne />
           <div className="mt-[33px] lg:mt-[56px]">
-            <button className="text-[16px] lg:text-[18px] text-[#6B6868] border border-2 border-[#6B6868] w-[80px] h-[40px] lg:w-[146px] lg:h-[49px] mt-[22.49px] lg:mt-[35px] ml-[29px] lg:ml-[61px]">
+            <button className="text-[16px] lg:text-[18px] text-[#6B6868] border-2 border-[#6B6868] w-[80px] h-[40px] lg:w-[146px] lg:h-[49px] mt-[22.49px] lg:mt-[35px] ml-[29px] lg:ml-[61px]">
               View all
             </button>
           </div>

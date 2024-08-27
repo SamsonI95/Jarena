@@ -1,15 +1,43 @@
 //App
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //Component
 import Logo from "../page components/Logo";
+
+//Firebase
+import { auth } from "../../config/firebase";
 
 //Icon(s)
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Listen to authentication state changes
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    // Cleanup the listener on component unmount
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      navigate("/home"); // Redirect to home or any other page after sign-out
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -112,18 +140,65 @@ const Header = () => {
                   CV
                 </Link>
               </li> */}
-              <li className="md:hidden flex flex-col space-y-6">
+              {user ? (
+                <li className="md:hidden flex flex-col space-y-6">
+                  <span>
+                    Welcome,{" "}
+                    <h3 className="font-semibold">
+                      {user.displayName || user.email}
+                    </h3>
+                  </span>
+                  <button onClick={handleSignOut}>Sign Out</button>
+                </li>
+              ) : (
+                <li className="md:hidden flex flex-col space-y-6">
+                  <Link to="/signin">
+                    <button>Sign in</button>
+                  </Link>
+                  <Link to="/signup">
+                    <button>Sign up</button>
+                  </Link>
+                </li>
+              )}
+              {/* <li className="md:hidden flex flex-col space-y-6">
                 <Link to="/signin">
                   <button>Sign in</button>
                 </Link>
                 <Link to="/signup">
                   <button>Sign up</button>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </section>
         <section className="hidden md:flex items-center space-x-5">
+          {user ? (
+            <>
+              <div className="flex items-center space-x-2">
+                <span>Welcome, </span>
+                <h3 className="font-semibold">
+                  {user.displayName || user.email}
+                </h3>
+              </div>
+
+              <button onClick={handleSignOut} className="text-[#817F7F] hover:text-[#5847D6]">
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/signin">
+                <button className="text-[#817F7F]">Sign in</button>
+              </Link>
+              <Link to="/signup">
+                <button className="text-white bg-[#5847D6] rounded-lg border border-transparent py-2 px-4">
+                  Sign up
+                </button>
+              </Link>
+            </>
+          )}
+        </section>
+        {/* <section className="hidden md:flex items-center space-x-5">
           <Link to="/signin">
             <button className="text-[#817F7F]">Sign in</button>
           </Link>
@@ -132,7 +207,7 @@ const Header = () => {
               Sign up
             </button>
           </Link>
-        </section>
+        </section> */}
       </div>
     </>
   );

@@ -27,6 +27,7 @@ function App() {
         </HideHeader>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/job-search" element={<JobSearch />} />
           <Route path="/learning-hub" element={<LearningHub />} />
           <Route path="/blog" element={<Blog />} />
