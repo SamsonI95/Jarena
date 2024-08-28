@@ -178,7 +178,7 @@ const SignUpForm = () => {
           </h3>
           <Link>
             <button
-              onClick={handleGoogleMobileSignIn}
+              onClick={handleGoogleSignIn}
               className="md:hidden flex items-center justify-center border border-[#424242] rounded-[10.14px] w-[288.93px] h-[35px]"
             >
               <FcGoogle className="mr-[10px]" />
