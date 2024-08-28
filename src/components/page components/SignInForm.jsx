@@ -91,6 +91,8 @@ const SignInForm = () => {
           <input
             type="text"
             placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="border border-[#424242] rounded-[10.14px] lg:rounded-[20px] w-[288.93px] h-[35px] lg:w-[570px] lg:h-[49px] pl-5 lg:text-[14px]"
           />
           <div className="relative left-2">
@@ -127,7 +129,7 @@ const SignInForm = () => {
           </h3>
           <Link>
             <button
-              onClick={handleGoogleMobileSignIn}
+              onClick={handleGoogleSignIn}
               className="md:hidden flex items-center justify-center border border-[#424242] rounded-[10.14px] w-[288.93px] h-[35px]"
             >
               <FcGoogle className="mr-[10px]" />
