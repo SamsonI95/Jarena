@@ -7,6 +7,9 @@ import LearningHubCardTwo from "../card components/LearningHubCardTwo";
 import LearningHubCardThree from "../card components/LearningHubCardThree";
 import LearningHubCardFour from "../card components/LearningHubCardFour";
 
+//Data
+import LearningHubData3 from "../data/LearningHubData3";
+
 const LearningHub = () => {
   return (
     <>
@@ -96,7 +99,7 @@ const LearningHub = () => {
           <LearningHubCardTwo />
         </section>
         <section className="mt-[50px] lg:mt-[126px] px-9 lg:px-[100px]">
-          <LearningHubCardThree />
+          <LearningHubCardThree data={LearningHubData3}/>
         </section>
         <section className="px-9 lg:px-[100px] mt-[62px] mb-[59px] lg:mt-[164px] lg:mb-[98px]">
           <LearningHubCardFour />

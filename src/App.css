@@ -71,6 +71,10 @@
   background-position: center;
 }
 
+.bg-image {
+  background-image: url(assets/Group99.png);
+}
+
 /* @media only screen and (max-width: 1366px) {
   .su-img {
     background-image: url(/assets/SignInImage1.png);
@@ -126,5 +130,11 @@
     width: 26.87px; /* Adjust width to control length of dashed line */
     height: 1px;
     border-bottom: 2px dashed #424242;
+  }
+
+  .bg-image {
+    background-image: url(assets/Group99f.svg);
+    background-size: cover;
+    background-position: center;
   }
 }

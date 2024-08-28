@@ -1,17 +1,23 @@
 [
-    {
-        "image": "",
-        "name": "",
-        "location": ""
-    },
-    {
-        "image": "",
-        "name": "",
-        "location": ""
-    },
-    {
-        "image": "",
-        "name": "",
-        "location": ""
-    }
+  {
+    "image": "assets/Lhub3Image1.png",
+    "mobileImage": "assets/Lhub3Image1s.png",
+    "name": "Ayotemi Babajide",
+    "location": "Lagos, Nigeria",
+    "story": "Transformative learning experience! This E-Learning website empowered me with practical skills. Engaging content, flexible schedules. A game-changer for my career journey!"
+  },
+  {
+    "image": "assets/Lhub3Image2.png",
+    "mobileImage": "assets/Lhub3Image2s.png",
+    "name": "Chinedu Okafor",
+    "location": "Abuja, Nigeria",
+    "story": "This platform provided me with the skills I needed to advance in my career. The instructors were knowledgeable, and the flexibility was exactly what I needed."
+  },
+  {
+    "image": "assets/Lhub3Image3.png",
+    "mobileImage": "assets/Lhub3Image3s.png",
+    "name": "Fatima Abubakar",
+    "location": "Kano, Nigeria",
+    "story": "A truly remarkable learning experience. The content was engaging, and I could learn at my own pace, which helped me balance my studies with my daily responsibilities."
+  }
 ]
