@@ -2,6 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+//Component
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ScaleLoader from "react-spinners/ScaleLoader";
+
 //Icon
 import { FcGoogle } from "react-icons/fc";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +17,7 @@ import { auth, db, provider } from "../../config/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
+  updateProfile,
   signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
@@ -21,6 +27,7 @@ const SignUpForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -29,6 +36,15 @@ const SignUpForm = () => {
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
+
+  const notify = (message, type) => {
+    toast[type](message, {
+      position: "top-right",
+      autoClose: 3000,
+      transition: Bounce,
+    });
+  };
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
@@ -39,6 +55,9 @@ const SignUpForm = () => {
       );
       const user = userCredential.user;
 
+      // Update user profile with display name
+      await updateProfile(user, { displayName: name });
+
       // Save user info to Firestore
       await addDoc(collection(db, "users"), {
         uid: user.uid,
@@ -47,12 +66,18 @@ const SignUpForm = () => {
         createdAt: serverTimestamp(),
       });
       console.log("User added successfully!");
-      alert("User added successfully!");
+      setLoading(false);
+      notify("User added successfully!", "success");
+
       // Redirect to homepage
       navigate("/home");
     } catch (error) {
-      setErrorMessage(error.message); // Set a state for error messages
+      setLoading(false);
+      setErrorMessage(error.message);
+      notify(error.message, "error");
       console.error("Error signing up:", error);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -88,14 +113,18 @@ const SignUpForm = () => {
       // Check if user already exists in Firestore
       await addDoc(collection(db, "users"), {
         uid: user.uid,
-        name: user.displayName,
+        name: name,
         email: user.email,
         createdAt: serverTimestamp(),
       });
+      setLoading(false);
+      notify("Google sign in successful!", "success");
 
       navigate("/home");
     } catch (error) {
-      setErrorMessage(error.message); // Set a state for error messages
+      setLoading(false);
+      setErrorMessage(error.message);
+      notify(error.message, "error");
       console.error("Error signing in with Google:", error);
     }
   };
@@ -122,6 +151,7 @@ const SignUpForm = () => {
 
   return (
     <div className="lg:scale-60 xlg:scale-100 ">
+      <ToastContainer />
       <form
         onSubmit={handleSignUp}
         className="bg-white border border-none rounded-2xl w-[336px] h-[551px] lg:w-[807px] lg:h-[853px] py-[48.5px] lg:py-[97px] relative lg:-right-[30rem] xlg:-right-[15rem]"
@@ -162,8 +192,13 @@ const SignUpForm = () => {
           </div>
         </section>
         <section className="flex justify-center">
-          <button className="bg-[#5847D6] rounded-[10.14px] lg:rounded-[20px] w-[288.93px] h-[35px] lg:w-[570px] lg:h-[49px] mt-[24.84px] lg:mt-[49px] text-white">
-            Sign Up
+          <button
+            className={`bg-[#5847D6] rounded-[10.14px] lg:rounded-[20px] w-[288.93px] h-[35px] lg:w-[570px] lg:h-[49px] mt-[24.84px] lg:mt-[49px] text-white flex items-center justify-center ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={loading}
+          >
+            {loading ? <ScaleLoader height={15} color="#fff" /> : "Sign Up"}
           </button>
         </section>
         <section className="flex items-center justify-center my-[22px] lg:mt-[40px]">
@@ -179,17 +214,35 @@ const SignUpForm = () => {
           <Link>
             <button
               onClick={handleGoogleSignIn}
-              className="md:hidden flex items-center justify-center border border-[#424242] rounded-[10.14px] w-[288.93px] h-[35px]"
+              className={`md:hidden flex items-center justify-center border border-[#424242] rounded-[10.14px] w-[288.93px] h-[35px] ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={loading}
             >
-              <FcGoogle className="mr-[10px]" />
-              <h3 className="flex items-center">Sign in with google</h3>
+              {loading ? (
+                <ScaleLoader height={15} color="#424242" />
+              ) : (
+                <>
+                  <FcGoogle className="mr-[10px]" />
+                  <h3 className="flex items-center">Sign in with Google</h3>
+                </>
+              )}
             </button>
             <button
               onClick={handleGoogleSignIn}
-              className="hidden md:flex items-center justify-center border border-[#424242] lg:rounded-[20px] lg:w-[570px] lg:h-[49px]"
+              className={`hidden md:flex items-center justify-center border border-[#424242] lg:rounded-[20px] lg:w-[570px] lg:h-[49px] ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={loading}
             >
-              <FcGoogle className="mr-[10px]" />
-              <h3 className="flex items-center">Sign in with google</h3>
+              {loading ? (
+                <ScaleLoader height={15} color="#424242" />
+              ) : (
+                <>
+                  <FcGoogle className="mr-[10px]" />
+                  <h3 className="flex items-center">Sign in with Google</h3>
+                </>
+              )}
             </button>
           </Link>
         </section>

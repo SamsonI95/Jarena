@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 //Firebase
 import { auth, provider } from "../../config/firebase";
@@ -19,6 +22,8 @@ import {
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   //Password visibility
@@ -27,14 +32,25 @@ const SignInForm = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
 
+  const notify = (message, type) => {
+    toast[type](message, {
+      position: "top-right", // Using the string for the position
+      autoClose: 3000,
+      transition: Bounce, // Applying the bounce transition
+    });
+  };
+
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
+      setLoading(false);
+      notify("Sign in successful!", "success");
       const user = userCredential.user;
 
       // Navigate to the home page after successful sign-in
@@ -42,19 +58,28 @@ const SignInForm = () => {
     } catch (error) {
       console.error("Error signing in with email and password:", error);
       // Handle error (e.g., show a message to the user)
+      setLoading(false);
+      setError(error.message);
+      notify(error.message, "error");
     }
   };
 
   const handleGoogleSignIn = async () => {
+    setLoading(true);
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+      setLoading(false);
+      notify("Google sign in successful!", "success");
 
       // Navigate to the home page after successful sign-in
       navigate("/home");
     } catch (error) {
       console.error("Error signing in with Google:", error);
       // Handle error (e.g., show a message to the user)
+      setLoading(false);
+      setError(error.message);
+      notify(error.message, "error");
     }
   };
 
@@ -80,6 +105,7 @@ const SignInForm = () => {
 
   return (
     <div className="lg:scale-60 xlg:scale-100 ">
+      <ToastContainer />
       <form
         onSubmit={handleSignIn}
         className="bg-white border border-none rounded-2xl w-[336px] h-[551px] lg:w-[807px] lg:h-[853px] py-[48.5px] lg:py-[97px] relative lg:-right-[30rem] xlg:-right-[15rem]"
@@ -87,6 +113,7 @@ const SignInForm = () => {
         <h3 className="text-[#5847D6] text-[18px] lg:text-[30px] text-center font-semibold mb-[53.53px] lg:mb-[105px]">
           Welcome back!
         </h3>
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <section className="flex flex-col items-center space-y-4 lg:space-y-7">
           <input
             type="text"
@@ -113,8 +140,14 @@ const SignInForm = () => {
           </div>
         </section>
         <section className="flex justify-center">
-          <button className="bg-[#5847D6] rounded-[10.14px] lg:rounded-[20px] w-[288.93px] h-[35px] lg:w-[570px] lg:h-[49px] mt-[24.84px] lg:mt-[49px] text-white">
-            Sign In
+          <button
+            type="submit"
+            className={`bg-[#5847D6] rounded-[10.14px] lg:rounded-[20px] w-[288.93px] h-[35px] lg:w-[570px] lg:h-[49px] mt-[24.84px] lg:mt-[49px] text-white ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={loading}
+          >
+            {loading ? <ScaleLoader height={15} color="#fff" /> : "Sign In"}
           </button>
         </section>
         <section className="flex items-center justify-center my-[22px] lg:my-[40px]">
@@ -137,10 +170,19 @@ const SignInForm = () => {
             </button>
             <button
               onClick={handleGoogleSignIn}
-              className="hidden md:flex items-center justify-center border border-[#424242] lg:rounded-[20px] lg:w-[570px] lg:h-[49px]"
+              className={`text-[] flex items-center justify-center border border-[#424242] rounded-[10.14px] lg:rounded-[20px] w-[288.93px] h-[35px] lg:w-[570px] lg:h-[49px] ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={loading}
             >
-              <FcGoogle className="mr-[10px]" />
-              <h3 className="flex items-center">Sign in with google</h3>
+              {loading ? (
+                <ScaleLoader height={15} color="#424242" />
+              ) : (
+                <>
+                  <FcGoogle className="mr-[10px]" />
+                  <h3 className="flex items-center">Sign in with Google</h3>
+                </>
+              )}
             </button>
           </Link>
         </section>

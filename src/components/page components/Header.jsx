@@ -174,14 +174,17 @@ const Header = () => {
         <section className="hidden md:flex items-center space-x-5">
           {user ? (
             <>
-              <div className="flex items-center space-x-2">
+              <div className={`flex items-center space-x-2 ${getTextColor()}`}>
                 <span>Welcome, </span>
                 <h3 className="font-semibold">
                   {user.displayName || user.email}
                 </h3>
               </div>
 
-              <button onClick={handleSignOut} className="text-[#817F7F] hover:text-[#5847D6]">
+              <button
+                onClick={handleSignOut}
+                className="text-white bg-[#5847D6] rounded-lg border border-transparent py-2 px-4"
+              >
                 Sign Out
               </button>
             </>

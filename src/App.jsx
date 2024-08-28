@@ -17,6 +17,7 @@ import SignIn from "./components/pages/SignIn";
 import Header from "./components/page components/Header";
 import Footer from "./components/page components/Footer";
 import HideHeader from "./components/page components/HideHeader";
+import ScrollToTop from "./components/page components/ScrollToTop";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <HideHeader>
           <Header />
         </HideHeader>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
