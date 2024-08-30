@@ -1,44 +1,93 @@
 //App
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 //Components
 import LandingPageCardOne from "../card components/LandingPageCardOne";
 import LandingPageCardTwo from "../card components/LandingPageCardTwo";
 
+//File Upload
+import { auth, storage } from "../../config/firebase";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
+import { onAuthStateChanged } from "firebase/auth";
+
 //Icon(s)
 import { SlLocationPin } from "react-icons/sl";
 import { IoIosSearch } from "react-icons/io";
 import { FiUpload } from "react-icons/fi";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 //Image(s)
 import LandingImageL from "../../../public/assets/LandingImageL.png";
 
 const HomePage = () => {
-  //custom file input logif
+  //custom file input logic
+  const [cvUrls, setCvUrls] = useState([]);
+  const [user, setUser] = useState(null);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    // Listen for changes in the authentication state
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    // Cleanup the listener on component unmount
+    return () => unsubscribe();
+  }, []);
 
   const handleClick = () => {
     fileInputRef.current.click();
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      onFileChange(file);
+    if (file && user) {
+      const storageRef = ref(storage, `CVs/${user.uid}/${file.name}`);
+      await uploadBytes(storageRef, file);
+      const downloadUrl = await getDownloadURL(storageRef);
+      setCvUrls((prevUrls) => [
+        ...prevUrls,
+        { name: file.name, url: downloadUrl },
+      ]);
     }
   };
+
+  const handleDelete = async (cvName) => {
+    if (user) {
+      const cvRef = ref(storage, `CVs/${user.uid}/${cvName}`);
+      await deleteObject(cvRef); // Delete from Firebase storage
+      setCvUrls((prevUrls) => prevUrls.filter((cv) => cv.name !== cvName)); // Remove from state
+    }
+  };
+
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     onFileChange(file);
+  //   }
+  // };
 
   const handleDrop = (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
     if (file) {
-      onFileChange(file);
+      handleFileChange({ target: { files: [file] } });
     }
   };
 
   const handleDragOver = (event) => {
     event.preventDefault();
   };
+
+  const getFileExtension = (url) => {
+    return url.split(/[#?]/)[0].split(".").pop().trim();
+  };
+
   //custom file input
 
   return (
@@ -95,7 +144,7 @@ const HomePage = () => {
             View More
           </button>
         </section>
-        <section className="px-9 lg:px-0">
+        <section className="px-7 lg:px-0">
           {/* mobile */}
           <div className="md:hidden">
             <div className="space-y-5">
@@ -132,35 +181,105 @@ const HomePage = () => {
                       </li>
                     </ul>
                   </div>
-                  <div
-                    className="border-2 border-[#5F5C79] border-dashed rounded-lg p-6 w-[200px] h-[200px] text-center cursor-pointer flex flex-col items-center justify-center"
-                    onClick={handleClick}
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}
-                  >
-                    <div className="w-16 h-16 bg-[#3538CD] rounded-full flex items-center justify-center mb-4">
-                      <FiUpload className="text-white text-2xl" />
+                  {user ? (
+                    <div
+                      className="border-2 border-[#5F5C79] border-dashed rounded-lg p-6 w-[200px] h-[200px] text-center cursor-pointer flex flex-col items-center justify-center"
+                      onClick={handleClick}
+                      onDrop={handleDrop}
+                      onDragOver={handleDragOver}
+                    >
+                      <>
+                        <div className="w-16 h-16 bg-[#3538CD] rounded-full flex items-center justify-center mb-4">
+                          <FiUpload className="text-white text-2xl" />
+                        </div>
+                        <div className="flex flex-col items-center justify-center space-x-1 text-[14px]">
+                          <p className="text-[#3538CD] font-semibold">
+                            Click to upload
+                          </p>
+                          <p className="text-tx-tertiary">or drag and drop</p>
+                        </div>
+                      </>
+                      {/* {cvUrl ? (
+                        getFileExtension(cvUrl) === "pdf" ? (
+                          <iframe
+                            src={cvUrl}
+                            title="Uploaded CV"
+                            className="w-full h-full"
+                            style={{ minHeight: "200px" }}
+                          />
+                        ) : (
+                          <a
+                            href={cvUrl}
+                            download
+                            className="text-blue-500 underline"
+                          >
+                            Download your uploaded CV
+                          </a>
+                        )
+                      ) : (
+                        <>
+                          <div className="w-16 h-16 bg-[#3538CD] rounded-full flex items-center justify-center mb-4">
+                            <FiUpload className="text-white text-2xl" />
+                          </div>
+                          <div className="flex flex-col items-center justify-center space-x-1 text-[14px]">
+                            <p className="text-[#3538CD] font-semibold">
+                              Click to upload
+                            </p>
+                            <p className="text-tx-tertiary">
+                              {" "}
+                              or drag and drop
+                            </p>
+                          </div>
+                        </>
+                      )} */}
+                      <input
+                        type="file"
+                        ref={fileInputRef}
+                        className="hidden"
+                        onChange={handleFileChange}
+                      />
                     </div>
-                    <div className="flex flex-col items-center justify-center space-x-1 text-[14px]">
-                      <p className="text-[#3538CD] font-semibold">
-                        Click to upload
-                      </p>
-                      <p className="text-tx-tertiary"> or drag and drop</p>
-                    </div>
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      className="hidden"
-                      onChange={handleFileChange}
-                    />
-                  </div>
+                  ) : (
+                    <p className="text-center text-red-500">
+                      Please sign in to upload your CV.
+                    </p>
+                  )}
                 </div>
+              </section>
+              <section>
+                <h3 className="font-semibold">Your Uploaded CVs:</h3>
+                {cvUrls.map((cv) => (
+                  <div key={cv.name} className="flex items-center space-x-3 mt-5">
+                    {getFileExtension(cv.url) === "pdf" ? (
+                      <iframe
+                        src={cv.url}
+                        title={cv.name}
+                        className="w-16 h-16"
+                        style={{ minHeight: "83px" }}
+                      />
+                    ) : (
+                      <a
+                        href={cv.url}
+                        download
+                        className="text-blue-500 underline"
+                      >
+                        {cv.name}
+                      </a>
+                    )}
+                    <button
+                      className="text-red-500 relative -top-[2rem]"
+                      onClick={() => handleDelete(cv.name)}
+                    >
+                      <MdOutlineDeleteForever />
+                    </button>
+                  </div>
+                ))}
               </section>
             </div>
           </div>
 
           {/* desktop */}
-          <div className="hidden md:flex jus space-x-[25rem]">
+          <div className="hidden md:flex jus space-x-[7rem]">
             <section className="w-fit space-y-5">
               <h3 className="font-semibold text-2xl">
                 Upload CV to be Reviewed
@@ -170,29 +289,85 @@ const HomePage = () => {
                 resume with professional insights for a standout job
                 application.
               </p>
-              <div
-                className="border-2 border-[#5F5C79] border-dashed rounded-lg p-6 w-[200px] h-[200px] text-center cursor-pointer flex flex-col items-center justify-center"
-                onClick={handleClick}
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-              >
-                <div className="w-16 h-16 bg-[#3538CD] rounded-full flex items-center justify-center mb-4">
-                  <FiUpload className="text-white text-2xl" />
+              {user ? (
+                <div
+                  className="border-2 border-[#5F5C79] border-dashed rounded-lg p-6 w-[200px] h-[200px] text-center cursor-pointer flex flex-col items-center justify-center"
+                  onClick={handleClick}
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                >
+                  <>
+                    <div className="w-16 h-16 bg-[#3538CD] rounded-full flex items-center justify-center mb-4">
+                      <FiUpload className="text-white text-2xl" />
+                    </div>
+                    <div className="flex flex-col items-center justify-center space-x-1 text-[14px]">
+                      <p className="text-[#3538CD] font-semibold">
+                        Click to upload
+                      </p>
+                      <p className="text-tx-tertiary"> or drag and drop</p>
+                    </div>
+                  </>
+                  {/* {cvUrl ? (
+                    getFileExtension(cvUrl) === "pdf" ? (
+                      <iframe
+                        src={cvUrl}
+                        title="Uploaded CV"
+                        className="w-full h-full"
+                        style={{ minHeight: "200px" }}
+                      />
+                    ) : (
+                      <a
+                        href={cvUrl}
+                        download
+                        className="text-blue-500 underline"
+                      >
+                        Download your uploaded CV
+                      </a>
+                    ) 
+                  ) : ( )}*/}
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
                 </div>
-                <div className="flex flex-col items-center justify-center space-x-1 text-[14px]">
-                  <p className="text-[#3538CD] font-semibold">
-                    Click to upload
-                  </p>
-                  <p className="text-tx-tertiary"> or drag and drop</p>
-                </div>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-              </div>
+              ) : (
+                <p className="text-center text-red-500">
+                  Please sign in to upload your CV.
+                </p>
+              )}
             </section>
+            <section>
+              <h3 className="font-semibold text-2xl">Your Uploaded CVs:</h3>
+              {cvUrls.map((cv) => (
+                <div key={cv.name} className="flex items-center space-x-3 mt-8">
+                  {getFileExtension(cv.url) === "pdf" ? (
+                    <iframe
+                      src={cv.url}
+                      title={cv.name}
+                      className="w-16 h-16"
+                      style={{ minHeight: "83px" }}
+                    />
+                  ) : (
+                    <a
+                      href={cv.url}
+                      download
+                      className="text-blue-500 underline"
+                    >
+                      {cv.name}
+                    </a>
+                  )}
+                  <button
+                    className="text-red-500 relative -top-[2rem]"
+                    onClick={() => handleDelete(cv.name)}
+                  >
+                    <MdOutlineDeleteForever />
+                  </button>
+                </div>
+              ))}
+            </section>
+
             <section className="">
               <h3 className="font-semibold text-2xl w-[300px]">
                 Finding a job has never been easier

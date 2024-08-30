@@ -72,7 +72,7 @@
 }
 
 .bg-image {
-  background-image: url(assets/Group99.png);
+  background-image: url(/assets/Group99.png);
 }
 
 /* @media only screen and (max-width: 1366px) {
@@ -133,7 +133,7 @@
   }
 
   .bg-image {
-    background-image: url(assets/Group99f.svg);
+    background-image: url(/assets/Group99f.svg);
     background-size: cover;
     background-position: center;
   }
